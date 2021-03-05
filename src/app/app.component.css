@@ -1,0 +1,52 @@
+.content-container {
+  display: flex;
+  margin: 32px;
+  padding: 16px;
+  flex-direction: column;
+}
+
+mat-toolbar {
+  padding-left: 48px;
+  width: 100%;
+}
+
+.map-stepper-container {
+  display: flex;
+  flex-direction: row;
+}
+
+:host {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+footer {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+}
+
+footer a {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .map-stepper-container {
+    height: 75vw;
+  }
+
+  .content-container {
+    padding-left: 5vw;
+    margin-left: 0;
+  }
+
+  .donation-line {
+    max-width: 75vw;
+  }
+}

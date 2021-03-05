@@ -1,0 +1,24 @@
+mat-expansion-panel {
+  width: 90vw;
+}
+
+.mat-expansion-panel-header[aria-disabled=true] {
+  color: black;
+}
+
+::ng-deep .mat-content {
+  padding: 10px;
+}
+
+::ng-deep .mat-expansion-panel-header-title {
+  max-width: 175px;
+}
+
+.question-row {
+  display: flex;
+  flex-direction: row;
+}
+
+mat-icon {
+  font-size: medium;
+}

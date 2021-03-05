@@ -1,0 +1,23 @@
+.form-container {
+  min-height: 125px;
+}
+
+.grey-circle {
+  border-radius: 50%;
+  background: #5C33AE;
+  color: white;
+  width: 25px;
+  height: 25px;
+  margin: 15px;
+  padding: 10px;
+}
+
+.date-label-list, .date-label {
+  display: flex;
+  flex-direction: row;
+}
+
+.date-label mat-icon {
+  font-size: medium;
+  color: #FFD23A;
+}

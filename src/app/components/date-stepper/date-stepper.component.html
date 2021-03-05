@@ -1,0 +1,6 @@
+<div [ngClass]="{'disabled-stepper': isDisabled}">
+  <mat-vertical-stepper (selectionChange)="dateHasChanged.emit(lastWeek[$event.selectedIndex])">
+    <mat-step *ngFor="let day of lastWeek" label="{{getLabelForDate(day)}}"></mat-step>
+  </mat-vertical-stepper>
+</div>
+

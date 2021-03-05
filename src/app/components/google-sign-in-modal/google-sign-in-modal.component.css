@@ -1,0 +1,9 @@
+.dialog-content {
+  margin: 5px;
+}
+
+mat-icon {
+  padding-bottom: 20px;
+  width: 25px;
+  height:15px;
+}

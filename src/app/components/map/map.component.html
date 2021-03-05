@@ -1,0 +1,19 @@
+<div class="map mat-elevation-z4" *ngIf="!hasError()">
+  <agm-map [latitude]="lat" [longitude]="lng" [minZoom]="12" [maxZoom]="17">
+    <agm-kml-layer *ngFor="let url of kmlLayerLinks" [url]="url"></agm-kml-layer>
+  </agm-map>
+  <div class="loader-container" *ngIf="isLoading">
+    <div>
+      <mat-spinner></mat-spinner>
+      <p>The geodata is loading ...</p>
+    </div>
+  </div>
+</div>
+
+<div class="error-container mat-elevation-z4" *ngIf="hasError()">
+  <div class="error-message">
+    <mat-icon>explore</mat-icon>
+    <p *ngIf="showUndefinedGeoDataErrorMessage()">Turn on your location to view the map.</p>
+    <p *ngIf="!showUndefinedGeoDataErrorMessage() && showUnsupportedGeoDataErrorMessage">Sorry. This app is still in the experimental phase and we do not support your city yet.</p>
+  </div>
+</div>

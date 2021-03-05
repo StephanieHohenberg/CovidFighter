@@ -1,0 +1,21 @@
+<div class="form-container">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Which upload option do you choose?</mat-label>
+      <mat-select [(value)]="selectedUploadOption">
+        <mat-option *ngFor="let opt of uploadOptions" [value]="opt">{{opt}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field class="mail-field" *ngIf="isServerUpload(selectedUploadOption)">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="covidfighter.berlin@gmail.com" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <label>
+      <input #fileInput type="file" accept="kml/*" (change)="onSubmitKmlFile(fileInput)" style="display:none">
+      <mat-icon class="grey-circle">upload</mat-icon>
+    </label>
+  </div>
+</div>

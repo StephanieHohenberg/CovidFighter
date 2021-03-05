@@ -1,0 +1,22 @@
+<div class="form-container">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Which test have you done?</mat-label>
+      <mat-select [(value)]="selectedTestOption">
+        <mat-option *ngFor="let test of testOptions" [value]="test">{{test}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <label>
+      <input #fileInput type="file" accept="kml/*" (change)="onSubmitKmlFile(fileInput)" style="display:none">
+      <mat-icon class="grey-circle">upload</mat-icon>
+    </label>
+  </div>
+
+  <div class="date-label-list">
+    <span class="date-label" *ngFor="let date of uploadedDates">
+      {{date.toLocaleDateString()}} <mat-icon>verified</mat-icon>&nbsp;
+    </span>
+  </div>
+  <mat-progress-bar *ngIf="isLoading" [value]="uploadProgress$ | async" mode="determinate"></mat-progress-bar>
+</div>
