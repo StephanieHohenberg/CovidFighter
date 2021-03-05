@@ -34,9 +34,7 @@ export class UploadFormularComponent implements OnInit, OnDestroy {
 
   constructor(private readonly mapService: MapService, public snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {
-    this.snackBar.open( 'testitest', 'Close', { duration: 4000 });
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();

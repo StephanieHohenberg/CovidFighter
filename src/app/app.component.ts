@@ -52,7 +52,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private retrieveLocationAndMapDataForToday(): void {
-    this.snackBar.open( 'Activate your location to use this app', 'Close', { duration: 4000 });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;

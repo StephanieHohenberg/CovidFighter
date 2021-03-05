@@ -28,6 +28,10 @@ export class MapComponent implements OnInit {
     return this.showUndefinedGeoDataErrorMessage() || this.showUnsupportedGeoDataErrorMessage;
   }
 
+  public hasNoData(): boolean {
+    return !this.hasError() && !this.isLoading && this.kmlLayerLinks.length === 0;
+  }
+
   public showUndefinedGeoDataErrorMessage(): boolean {
     return !this.lat || !this.lng;
   }

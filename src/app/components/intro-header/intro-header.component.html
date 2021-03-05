@@ -18,9 +18,14 @@
       After adding all your locations for all the relevant days, go to the settings and export the data for each day into a kml file.
     </p>
     <p>
-      Upload the generated files here. Of course we treat your data anonymously and it is going to be deleted after 14 days. Thank you very much for sharing your data.
+      Upload the generated files here. Of course we treat your data anonymously and it is going to be deleted after 14 days. <br/>
+      Thank you very much for sharing your data.<br/>
+      &nbsp;
     </p>
-
+    <app-upload-formular [hasUndefinedGeoDataErrorMessage]="!geolocationActivated"
+                         [hasUnsupportedGeoDataErrorMessage]="!supportedGeolocation"
+    >
+    </app-upload-formular>
   </div>
 
   <div class="reply-no-row" *ngIf="reply == 0">
@@ -30,17 +35,12 @@
       By uploading it locally you can check the map more easily whether you got any interactions with someone tested positive. <br/>
       When you upload it to our server, we will do this job for you and notify you. Of course your geodata and your mail address is going to be deleted after 14 days.
     </p>
+    <app-upload-formular-non-tested></app-upload-formular-non-tested>
   </div>
 
   <div class="reply-no-row" *ngIf="reply == -1">
     <p>&nbsp;</p>
   </div>
 
-  <app-upload-formular *ngIf="reply == 1"
-                       [hasUndefinedGeoDataErrorMessage]="!geolocationActivated"
-                       [hasUnsupportedGeoDataErrorMessage]="!supportedGeolocation"
-  >
-  </app-upload-formular>
-  <app-upload-formular-non-tested *ngIf="reply == 0"></app-upload-formular-non-tested>
 </mat-expansion-panel>
 <p>&nbsp;</p>

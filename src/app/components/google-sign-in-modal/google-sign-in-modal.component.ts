@@ -5,7 +5,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
 
-const googleLogoURL = './../../../assets/Google.svg';
+const googleLogoURL = 'https://raw.githubusercontent.com/StephanieHohenberg/CovidFighter/f27ef36c109b0a3bdb49f61e929d1fa91b641aa7/src/assets/Google.svg';
 
 @Component({
   selector: 'app-google-sign-in-modal',

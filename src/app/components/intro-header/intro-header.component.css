@@ -22,3 +22,7 @@ mat-expansion-panel {
 mat-icon {
   font-size: medium;
 }
+
+.reply-yes-row, .reply-no-row {
+  min-height: 275px;
+}
