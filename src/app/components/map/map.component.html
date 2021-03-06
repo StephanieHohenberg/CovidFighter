@@ -1,4 +1,4 @@
-<div class="map mat-elevation-z4" *ngIf="!hasNoData()">
+<div class="map mat-elevation-z4" *ngIf="!hasNoData() && !hasError()">
   <agm-map [latitude]="lat" [longitude]="lng" [minZoom]="12" [maxZoom]="17">
     <agm-kml-layer *ngFor="let url of kmlLayerLinks" [url]="url"></agm-kml-layer>
   </agm-map>
@@ -10,16 +10,8 @@
   </div>
 </div>
 
-<div class="error-container mat-elevation-z4" *ngIf="hasError() || kmlLayerLinks.length == 0">
-  <div class="error-message">
-    <mat-icon>explore</mat-icon>
-    <p *ngIf="showUndefinedGeoDataErrorMessage()">Activate your location to view the map.</p>
-    <p *ngIf="!showUndefinedGeoDataErrorMessage() && showUnsupportedGeoDataErrorMessage">Sorry. This app is still in the experimental phase and we do not support your city yet.</p>
-  </div>
-</div>
-
-<div class="error-container mat-elevation-z4" *ngIf="hasNoData()">
-  <div class="error-message">
-    <p>There is no data for this day uploaded.</p>
-  </div>
+<div class="error-container mat-elevation-z4" *ngIf="hasError() || hasNoData()">
+  <div class="error-img" [ngClass]="getClassForErrorImage()">
+    &nbsp;
+ </div>
 </div>

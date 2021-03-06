@@ -32,6 +32,19 @@ export class MapComponent implements OnInit {
     return !this.hasError() && !this.isLoading && this.kmlLayerLinks.length === 0;
   }
 
+  public getClassForErrorImage(): string {
+    if (this.showUndefinedGeoDataErrorMessage()) {
+      return 'error-activate-loc';
+    }
+    if (this.showUnsupportedGeoDataErrorMessage) {
+      return 'error-unsuported-city';
+    }
+    if (this.hasNoData()) {
+      return 'error-no-data';
+    }
+    return '';
+  }
+
   public showUndefinedGeoDataErrorMessage(): boolean {
     return !this.lat || !this.lng;
   }

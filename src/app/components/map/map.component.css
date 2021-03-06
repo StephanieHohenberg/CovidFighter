@@ -35,22 +35,37 @@ mat-spinner {
   width: 75vw;
   height: 75vw;
   background: rgba(230, 235, 241, 1);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding-top: 150px;
 }
 
-.error-message {
-  text-align: center;
+.error-img {
+  width: 75vw;
+  height: 75vw;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-@media (max-width: 992px) {
-  .error-container {
-    padding: 0;
+.error-activate-loc {
+  background-image: url("./../../../assets/error_loc.png");
+}
+
+.error-unsuported-city {
+  background-image: url("./../../../assets/error_ber.png");
+}
+
+.error-no-data {
+  background-image: url("./../../../assets/error_data.png");
+}
+
+@media (min-width: 800px) {
+  .error-activate-loc {
+    background-image: url("./../../../assets/error_loc_desktop.png");
   }
 
-  .error-message {
-    padding-top: 150px;
+  .error-unsuported-city {
+    background-image: url("./../../../assets/error_ber_desktop.png");
+  }
+
+  .error-no-data {
+    background-image: url("./../../../assets/error_data_desktop.png");
   }
 }
