@@ -5,7 +5,7 @@ import {from, Subject} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {GoogleSignInModalComponent} from './components/google-sign-in-modal/google-sign-in-modal.component';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import ListResult = firebase.storage.ListResult;
 
 @Component({
@@ -28,7 +28,9 @@ export class AppComponent implements OnInit, OnDestroy {
               public dialog: MatDialog) { }
 
   public ngOnInit(): void {
-    this.retrieveLocationAndMapDataForToday();
+    if (!this.isMobile()) {
+      this.retrieveLocationAndMapDataForToday();
+    }
   }
 
   public ngOnDestroy(): void {
@@ -77,7 +79,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
     this.kmlLayerLinks = [];
-    // TODO: timeout
     this.mapService.getKmlFilesForDateAndLocation(selectedDate)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
@@ -86,14 +87,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private fillKmlLayerLinkList(listResult: ListResult): void {
+    this.kmlLayerLinks = [];
     listResult.items.forEach(item => {
       from(item.getDownloadURL())
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(url => {
           this.kmlLayerLinks.push(url);
         });
-      this.isLoading = false;
     });
+    this.isLoading = false;
   }
 
   private openSignInDialog(): void {
