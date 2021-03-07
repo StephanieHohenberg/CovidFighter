@@ -312,6 +312,12 @@ Apache-2.0
 @firebase/util
 Apache-2.0
 
+@ngx-translate/core
+MIT
+
+@ngx-translate/http-loader
+MIT
+
 firebase/app
 
 firebase/auth
