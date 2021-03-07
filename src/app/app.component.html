@@ -1,7 +1,15 @@
 <!-- TOOLBAR -->
 <div>
   <mat-toolbar color="primary" class="mat-elevation-z4">
-    <span>Covid Fighter</span>
+    <span>{{'APP.TITLE' | translate}}</span>
+
+    <mat-form-field>
+      <mat-select [(value)]="selectedLang" (selectionChange)="onLangChanged(selectedLang)">
+        <mat-option *ngFor="let lang of languageOptions" [value]="lang">
+          {{getTranslateKeyForLanguageOption(lang) | translate}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-toolbar>
 </div>
 
@@ -10,31 +18,39 @@
   <app-intro-header
     [geolocationActivated]="geolocationActivated"
     [supportedGeolocation]="supportedGeolocation"
+    (dataUploaded)="onGeoDataUploaded($event)"
   >
   </app-intro-header>
 
   <div class="map-stepper-container">
-    <app-map [kmlLayerLinks]="kmlLayerLinks"
-             [isLoading]="isLoading"
-             [showUnsupportedGeoDataErrorMessage]="!supportedGeolocation">
-    </app-map>
+    <div class="map-footer-container">
+      <app-map [kmlLayerLinks]="kmlLayerLinks"
+               [isLoading]="isLoading"
+               [showUnsupportedGeoDataErrorMessage]="!supportedGeolocation">
+      </app-map>
+      <ng-container *ngTemplateOutlet="footer"></ng-container>
+    </div>
+
     <app-date-stepper (dateHasChanged)="onDateChanged($event)"
                       [steps]="getStepsForDateStepper()"
                       [isDisabled]="isLoading">
     </app-date-stepper>
   </div>
-
-
-  <!-- FOOTER -->
-  <footer>
-      You like this application?&nbsp;
-      <a href="https://github.com/StephanieHohenberg/CovidFighter" target="_blank" rel="noopener"> Give our repo a star</a>
-  </footer>
-  <p class="donation-line">
-    <span>Contribute and donate&nbsp;<a href="https://paypal.me/pools/c/8xsRVWfYXB" target="_blank" rel="noopener">here</a>&nbsp;to support the further development and to cover the monthly costs of keeping this app alive.</span>
-  </p>
 </div>
+
+
 
 <div class="content-container mobile-container" *ngIf="isMobile()">
   &nbsp;
 </div>
+
+<ng-template #footer>
+  <div class="footer-container" *ngIf="!isMobile()">
+  <p>
+    {{'FOOTER.SHARE' | translate}}&nbsp;<span class="hashtag">&nbsp;#StopTheSpread&nbsp;</span>&nbsp;&nbsp;<span class="hashtag">&nbsp;#ShareTheWord&nbsp;</span><br />
+    {{'FOOTER.SHARE_2' | translate}}
+  </p><br />
+  <span>{{'FOOTER.LIKE' | translate}}&nbsp;<a href="https://github.com/StephanieHohenberg/CovidFighter" target="_blank" rel="noopener">{{'FOOTER.STAR' | translate}}</a></span><br />
+  <span>{{'FOOTER.DONATE' | translate}}&nbsp;<a href="https://paypal.me/pools/c/8xsRVWfYXB" target="_blank" rel="noopener">{{'FOOTER.HERE' | translate}}</a>&nbsp;{{'FOOTER.SUPPORT' | translate}}</span>
+  </div>
+</ng-template>

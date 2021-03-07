@@ -1,18 +1,19 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {MapService} from '../../../services/map.service';
 import {catchError, takeUntil} from 'rxjs/operators';
 import {EMPTY, Observable, Subject} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
 
 export enum TestOption {
   NONE = '-',
-  PCR_TEST = 'PCR Test',
-  PCR_SCHNELL_TEST = 'PCR Schnelltest',
-  ANTIGEN_TEST = 'Antigen-Test',
-  CORONA_SELBST_TEST = 'Corona-Selbsttest',
-  ANTIKOERPER_TEST = 'Antikörper-Test',
-  UNSURE = 'Unsure',
-  CLOSE = 'A close acquaintance got tested.',
+  PCR_TEST = 'TESTED_POSITIVE.FORM.OPTION_PCR',
+  PCR_SCHNELL_TEST = 'TESTED_POSITIVE.FORM.OPTION_PCR_SCHNELL',
+  ANTIGEN_TEST = 'TESTED_POSITIVE.FORM.OPTION_ANTIGEN',
+  CORONA_SELBST_TEST = 'TESTED_POSITIVE.FORM.OPTION_SELBSTTEST',
+  ANTIKOERPER_TEST = 'TESTED_POSITIVE.FORM.OPTION_ANTIBODY',
+  UNSURE = 'TESTED_POSITIVE.FORM.OPTION_UNSURE',
+  CLOSE = 'TESTED_POSITIVE.FORM.OPTION_FRIEND',
 }
 
 @Component({
@@ -24,21 +25,32 @@ export class UploadFormularComponent implements OnInit, OnDestroy {
 
   @Input() public hasUndefinedGeoDataErrorMessage = false;
   @Input() public hasUnsupportedGeoDataErrorMessage = false;
+  @Output() public dataUploaded = new EventEmitter<Date>();
   public isLoading = false;
 
   public testOptions: TestOption[] = Object.values(TestOption);
   public selectedTestOption = TestOption.NONE;
   public uploadedDates: Date[] = [];
+  public hasAgreed = true;
+  public uploadProgress$: Observable<number>;
   private unsubscribe$ = new Subject();
-  private uploadProgress$: Observable<number>;
 
-  constructor(private readonly mapService: MapService, public snackBar: MatSnackBar) { }
+  constructor(private readonly mapService: MapService, public snackBar: MatSnackBar,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  public getTodaysGoogleTimelineLink(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    return `https://www.google.com/maps/timeline?pb=!1m2!1m1!1s${year}-${month}-${day}`;
   }
 
   public onSubmitKmlFile(selectedFile): void {
@@ -49,7 +61,12 @@ export class UploadFormularComponent implements OnInit, OnDestroy {
     const file: File = selectedFile.files[0];
     const date = this.getDateByFileName(file.name);
     if (!date) {
-      this.snackBar.open( 'Your file was in the wrong format. Try it again.', 'Close', { duration: 4000 });
+      this.snackBar.open(this.translate.instant('SNACK.WRONG_FILE_FORMAT'), 'Close', { duration: 4000 });
+      return;
+    }
+
+    if (this.isDateDeprecated(date)) {
+      this.snackBar.open(this.translate.instant('SNACK.TOO_OLD_DATE'), 'Close', { duration: 4000 });
       return;
     }
 
@@ -63,16 +80,15 @@ export class UploadFormularComponent implements OnInit, OnDestroy {
           takeUntil(this.unsubscribe$),
           catchError((error) => {
             this.isLoading = false;
-            this.snackBar.open( 'Sorry. Something went wrong. Try it again.', 'Close', { duration: 4000 });
+            this.snackBar.open(this.translate.instant('SNACK.ERROR_UPLOAD'), 'Close', { duration: 4000 });
             console.log(error.message);
             return EMPTY;
           })
         ).subscribe((downloadUrl) => {
-          this.snackBar.open( 'Successful upload', 'Close', { duration: 4000 });
+          this.snackBar.open(this.translate.instant('SNACK.SUCCESS_UPLOAD'), 'Close', { duration: 4000 });
           this.uploadedDates.push(date);
-          // TODO if it is today's data display in map
+          this.dataUploaded.emit(date);
           this.isLoading = false;
-          console.log(downloadUrl);
       });
     });
     reader.readAsDataURL(file);
@@ -93,5 +109,12 @@ export class UploadFormularComponent implements OnInit, OnDestroy {
     date.setFullYear(year, month - 1, day);
     date.setHours(0, 0, 0, 0);
     return date;
+  }
+
+  private isDateDeprecated(date: Date): boolean {
+    const earliestValidDay = new Date();
+    earliestValidDay.setHours(0, 0, 0, 0);
+    earliestValidDay.setDate(earliestValidDay.getDate() - 14);
+    return date <= earliestValidDay;
   }
 }

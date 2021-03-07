@@ -11,7 +11,7 @@ mat-expansion-panel {
 }
 
 ::ng-deep .mat-expansion-panel-header-title {
-  max-width: 175px;
+  max-width: 225px;
 }
 
 .question-row {

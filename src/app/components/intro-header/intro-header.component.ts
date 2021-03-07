@@ -1,5 +1,7 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-intro-header',
@@ -10,23 +12,19 @@ export class IntroHeaderComponent implements OnInit {
 
   @Input() public geolocationActivated = false;
   @Input() public supportedGeolocation = false;
+  @Output() public dataUploaded = new EventEmitter<Date>();
   public reply = -1;
 
-  constructor() { }
+  constructor(public snackBar: MatSnackBar,
+              private translate: TranslateService) { }
 
   public ngOnInit(): void {
   }
 
-  public selectionChanged(): void {
-
-  }
-
-  public getTodaysGoogleTimelineLink(): string {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    return `https://www.google.com/maps/timeline?pb=!1m2!1m1!1s${year}-${month}-${day}`;
+  public selectionChanged(reply: number): void {
+    if (reply == 1) {
+      this.snackBar.open( this.translate.instant('SNACK.GET_WELL'), 'Close', { duration: 4000 });
+    }
   }
 
 }

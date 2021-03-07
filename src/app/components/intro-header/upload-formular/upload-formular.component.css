@@ -2,7 +2,21 @@
   min-height: 125px;
 }
 
-.grey-circle {
+.step-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.step-container mat-icon {
+  font-size: 15px;
+  width: 15px;
+}
+
+.step-number {
+  background: rgba(230, 235, 241, 1);
+}
+
+.purple-circle {
   border-radius: 50%;
   background: #5C33AE;
   color: white;
@@ -10,6 +24,13 @@
   height: 25px;
   margin: 15px;
   padding: 10px;
+  cursor: pointer;
+}
+
+
+.disabled-circle {
+  background: grey;
+  cursor: not-allowed;
 }
 
 .date-label-list, .date-label {
@@ -20,4 +41,8 @@
 .date-label mat-icon {
   font-size: medium;
   color: #FFD23A;
+}
+
+.red-font {
+  color: darkred;
 }

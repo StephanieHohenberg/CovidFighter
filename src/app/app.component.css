@@ -10,9 +10,21 @@ mat-toolbar {
   width: 100%;
 }
 
+mat-toolbar mat-form-field {
+  position: absolute;
+  right: 48px;
+  max-width: 75px;
+  font-size: 12px;
+}
+
 .map-stepper-container {
   display: flex;
   flex-direction: row;
+}
+
+.map-footer-container {
+  display: flex;
+  flex-direction: column;
 }
 
 :host {
@@ -24,16 +36,19 @@ mat-toolbar {
   -moz-osx-font-smoothing: grayscale;
 }
 
-footer {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  line-height: 20px;
+.footer-container {
+  margin-top: 32px;
 }
 
-footer a {
+.footer-link-line {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.hashtag {
+  background: black;
+  color: white;
 }
 
 @media (max-width: 992px) {

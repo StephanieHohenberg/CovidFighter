@@ -1,13 +1,13 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 import {FormControl, Validators} from '@angular/forms';
-import {MapService} from '../../../services/map.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
 
 export enum UploadOption {
   NONE = '-',
-  LOCALLY = 'locally',
-  SERVER = 'server',
+  LOCALLY = 'NON_TESTED.FORM.OPTION_LOCAL',
+  SERVER = 'NON_TESTED.FORM.OPTION_SERVER',
 }
 
 @Component({
@@ -22,7 +22,8 @@ export class UploadFormularNonTestedComponent implements OnInit, OnDestroy {
   public email = new FormControl('', [Validators.required, Validators.email]);
   private unsubscribe$ = new Subject();
 
-  constructor(public snackBar: MatSnackBar) { }
+  constructor(public snackBar: MatSnackBar,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -33,8 +34,7 @@ export class UploadFormularNonTestedComponent implements OnInit, OnDestroy {
   }
 
   public onSubmitKmlFile(selectedFile): void {
-    this.snackBar.open( 'Sorry. This feature is not implemented yet.', 'Close', { duration: 4000 });
-
+    this.snackBar.open( this.translate.instant('SNACK.FEATURE_COMING_SOON'), 'Close', { duration: 4000 });
 
     if (this.selectedUploadOption === UploadOption.NONE) {
       this.selectedUploadOption = UploadOption.LOCALLY;
@@ -52,9 +52,9 @@ export class UploadFormularNonTestedComponent implements OnInit, OnDestroy {
 
   public getErrorMessage(): string {
     if (this.email.hasError('required')) {
-      return 'Enter your mail, so we are able to notify you.';
+      return 'NON_TESTED.FORM.ERROR_REQUIRED';
     }
 
-    return this.email.hasError('email') ? 'Your mail is not valid' : '';
+    return this.email.hasError('email') ? 'NON_TESTED.FORM.ERROR_INVALID' : '';
   }
 }

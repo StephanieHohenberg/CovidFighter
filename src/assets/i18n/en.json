@@ -1,0 +1,77 @@
+{
+  "APP.TITLE": "Covid Fighter",
+  "APP.LANG_EN": "English",
+  "APP.LANG_DE": "German",
+  "SIGN_IN": {
+    "TITLE": "Sign In",
+    "DESC": "Use your Google Account to sign in and use this service.",
+    "BUTTON": "Sign in With Google"
+  },
+  "EXPANSION_PANEL": {
+    "RADIO_BUTTON": "You got tested positive?",
+    "YES": "Yes",
+    "NO": "No"
+  },
+  "TESTED_POSITIVE": {
+    "EXPLAINATION": {
+      "TITLE": "Steps",
+      "STEP_1_PRELINK": "Use",
+      "STEP_1_TIMELINE": "Google Timeline",
+      "STEP_1": "to create your own geo data. Reflect, where you have been before gotten tested positive and before staying in quarantine.<br /> Add the locations with an approximately timeframe to the map. Take attention not to share your home address.",
+      "STEP_2_1": "Go to the settings",
+      "STEP_2_2": "and export the data for all the relevants day into kml files.",
+      "STEP_3": "Upload these kml files here. Of course we treat your data anonymously and it is going to be deleted after 14 days."
+    },
+    "FORM": {
+      "SELECT_TEST": "Which test have you done?",
+      "OPTION_PCR": "PCR Test",
+      "OPTION_PCR_SCHNELL": "PCR Schnelltest",
+      "OPTION_ANTIGEN": "Antigen-Test",
+      "OPTION_SELBSTTEST": "Corona-Selbsttest",
+      "OPTION_ANTIBODY": "Antikörper-Test",
+      "OPTION_UNSURE": "Unsure",
+      "OPTION_FRIEND": "A close acquaintance got tested.",
+      "CHECKBOX_AGREE": "I agree to share my data anonymously for 14 days."
+    }
+  },
+  "NON_TESTED": {
+    "EXPLAINATION": {
+      "TITLE": "Steps",
+      "STEP_1": "Analyse the map and track whether you might have been in contact with someone tested positive.<br />Have you been to any of the displayed locations in the map? Click on the pin to compare the time.",
+      "STEP_2": "Consider by yourself depending on the situation, whether you act on it.<br /> Do you feel sick? Do you have symptons? Maybe do a test or stay home for a couple of days.",
+      "FEATURE": "The next feature for you would be the option to upload your own geo data either locally or to our server. By uploading it locally you can check the map more easily whether you got any interactions with someone tested positive. When you upload it to our server, we will do this job for you and notify you. <br />Of course your geodata and your mail address is going to be deleted after 14 days."
+    },
+    "FORM": {
+      "SELECT_UPLOAD": "Which upload option do you choose?",
+      "OPTION_LOCAL": "locally",
+      "OPTION_SERVER": "server",
+      "FIELD_MAIL": "Enter your email",
+      "ERROR_REQUIRED": "Enter your mail, so we are able to notify you.",
+      "ERROR_INVALID": "Your mail is not valid"
+    }
+  },
+  "MAP": {
+    "LOADING": "The geodata is loading ..."
+  },
+  "STEPPER": {
+    "TODAY": "today"
+  },
+  "FOOTER": {
+    "SHARE": "Share this web app with your friends. ",
+    "SHARE_2": "As more people know this webapp, as more people can check, whether they might have met someone tested positive and as more people tested positive can upload their geodata.",
+    "LIKE": "You like this app?",
+    "STAR": "Give our repo a star",
+    "DONATE": "Contribute and donate",
+    "HERE": "here",
+    "SUPPORT": "to support the further development and to cover the monthly costs of keeping this app alive."
+  },
+  "SNACK": {
+    "EXPERIMENTAL_PHASE": "Sorry. This app is still in the experimental phase. We do not support your city yet.",
+    "WRONG_FILE_FORMAT": "Your file was in the wrong format. Try it again.",
+    "TOO_OLD_DATE": "We do not accept data older than 14 days.",
+    "ERROR_UPLOAD": "Sorry. Something went wrong. Try it again.",
+    "SUCCESS_UPLOAD": "Successful upload. Thank you very much for sharing your data.",
+    "FEATURE_COMING_SOON": "This feature is not implemented yet, but it is coming soon.",
+    "GET_WELL": "We hope you get well soon !"
+  }
+}

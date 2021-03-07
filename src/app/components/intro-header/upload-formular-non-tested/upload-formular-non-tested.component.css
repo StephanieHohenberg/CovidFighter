@@ -1,8 +1,22 @@
+.step-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.step-container mat-icon {
+  font-size: 15px;
+  width: 15px;
+}
+
+.step-number {
+  background: rgba(230, 235, 241, 1);
+}
+
 .form-container {
   min-height: 125px;
 }
 
-.grey-circle {
+.purple-circle {
   border-radius: 50%;
   background: #5C33AE;
   color: white;

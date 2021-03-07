@@ -7,6 +7,13 @@ import {MatDialog} from '@angular/material/dialog';
 import {GoogleSignInModalComponent} from './components/google-sign-in-modal/google-sign-in-modal.component';
 import firebase from 'firebase/app';
 import ListResult = firebase.storage.ListResult;
+import {TranslateService} from '@ngx-translate/core';
+
+export enum LanguageOption {
+  EN = 'en',
+  DE = 'de',
+}
+
 
 @Component({
   selector: 'app-root',
@@ -21,11 +28,20 @@ export class AppComponent implements OnInit, OnDestroy {
   public geolocationActivated = false;
   public supportedGeolocation = false;
   public kmlLayerLinks = [];
+  public languageOptions: LanguageOption[] = Object.values(LanguageOption);
+  public selectedLang = LanguageOption.EN;
+  public selectedDate: Date;
+
   private unsubscribe$ = new Subject();
 
   constructor(private readonly mapService: MapService,
               public snackBar: MatSnackBar,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private translate: TranslateService) {
+    translate.setDefaultLang(this.selectedLang);
+    this.selectedDate = new Date();
+    this.selectedDate.setHours(0, 0, 0, 0);
+  }
 
   public ngOnInit(): void {
     if (!this.isMobile()) {
@@ -38,8 +54,23 @@ export class AppComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
+  public onGeoDataUploaded(date: Date): void {
+    if (this.selectedDate.toLocaleDateString() === date.toLocaleDateString()) {
+      this.retrieveMapDataForDate(date);
+    }
+  }
+
   public onDateChanged(date: Date): void {
+    this.selectedDate = date;
     this.retrieveMapDataForDate(date);
+  }
+
+  public onLangChanged(lang: LanguageOption): void {
+    this.translate.use(lang);
+  }
+
+  public getTranslateKeyForLanguageOption(lang: LanguageOption): string {
+    return `APP.LANG_${lang.toUpperCase()}`;
   }
 
   public getStepsForDateStepper(): number[] {
@@ -61,11 +92,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.geolocationActivated = true;
         this.supportedGeolocation = this.mapService.isGeolocationWithinSupportedCities(this.lat, this.lng);
         if (!this.supportedGeolocation) {
-          this.snackBar.open(
-            'Sorry. This app is still in the experimental phase. We do not support your city yet.',
-            'Close',
-            { duration: 4000 }
-          );
+          this.snackBar.open(this.translate.instant('SNACK.EXPERIMENTAL_PHASE'), 'Close', { duration: 4000 });
         }
         this.retrieveMapDataForDate(new Date());
       });

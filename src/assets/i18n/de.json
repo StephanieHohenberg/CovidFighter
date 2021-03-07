@@ -1,0 +1,77 @@
+{
+  "APP.TITLE": "Covid Fighter",
+  "APP.LANG_EN": "Englisch",
+  "APP.LANG_DE": "Deutsch",
+  "SIGN_IN": {
+    "TITLE": "Anmeldung",
+    "DESC": "Benutze dein Google Konto um dich anzumelden und um diesen Service nutzen zu können.",
+    "BUTTON": "Anmeldung mit Google"
+  },
+  "EXPANSION_PANEL": {
+    "RADIO_BUTTON": "Wurdest du positiv getestet?",
+    "YES": "Ja",
+    "NO": "Nein"
+  },
+  "TESTED_POSITIVE": {
+    "EXPLAINATION": {
+      "TITLE": "Schritte",
+      "STEP_1_PRELINK": "Benutze",
+      "STEP_1_TIMELINE": "Google Timeline",
+      "STEP_1": "um deine Geodaten zu erstellen. Reflektiere, wo du warst bevor du positiv getestet wurdest und bevor du in Quarantäne gegangen bist.<br /> Füge deine Orte mit einen ungefähren Zeitrahmen der Karte hinzu. Achte dadrauf nicht deine Adresse zu teilen.",
+      "STEP_2_1": "Gehe zu den Einstellungen",
+      "STEP_2_2": "und exportier deine Daten für alle relevanten Daten in kml Dateien.",
+      "STEP_3": "Lade diese Datein hier hoch. Natürlich werden deine Daten anonym behandelt und nach 14 Tagen gelöscht."
+    },
+    "FORM": {
+      "SELECT_TEST": "Welchen Test hast du gemacht?",
+      "OPTION_PCR": "PCR Test",
+      "OPTION_PCR_SCHNELL": "PCR Schnelltest",
+      "OPTION_ANTIGEN": "Antigen-Test",
+      "OPTION_SELBSTTEST": "Corona-Selbsttest",
+      "OPTION_ANTIBODY": "Antikörper-Test",
+      "OPTION_UNSURE": "Unklar",
+      "OPTION_FRIEND": "Ein/e Bekannte/r hat sich getestet.",
+      "CHECKBOX_AGREE": "Ich bin einverstanden damit meine Daten anonym für 14 Tage zu teilen."
+    }
+  },
+  "NON_TESTED": {
+    "EXPLAINATION": {
+      "TITLE": "Schritte",
+      "STEP_1": "Analysiere die Karte und finde heraus, ob du möglicherweise in Kontakt mit jemanden warst, wer positiv getestet wurde.<br />Warst du an irgendwelchen Orten angezeigt auf der Karte? Klicke auf die Pins und vergleiche die Zeit.",
+      "STEP_2": "Entscheide für dich selbst abhängig von der Situation, ob du handeln möchtest.<br /> Fühlst du dich krank? Hast du Symptome? Mach eventuell einen Test oder bleibe für ein paar Tage zu Hause.",
+      "FEATURE": "Das nächste Feature für dich wäre die Option deine eigenen Geodaten hochzuladen entweder lokal oder auf dem Server. Lokal kannst du auf der Karte einfacher checken, ob du eine Interaktion mit jemanden hattest, wer positiv getestet wurde. Wenn du deine Daten auf unseren Server hochlädst, erledigen wir das für dich und benachrichtigen dich. <br />Natürlich werden deine Daten und deine Mail-Adresse nach 14 Tagen gelöscht."
+    },
+    "FORM": {
+      "SELECT_UPLOAD": "Wähle eine Option zum Hochladen:",
+      "OPTION_LOCAL": "lokal",
+      "OPTION_SERVER": "Server",
+      "FIELD_MAIL": "Gib deine Mail an",
+      "ERROR_REQUIRED": "Gib deine Mail an, sodass wir dich benachrichtigen können.",
+      "ERROR_INVALID": "Deine Mail ist ungültig"
+    }
+  },
+  "MAP": {
+    "LOADING": "Die Geodaten laden ..."
+  },
+  "STEPPER": {
+    "TODAY": "heute"
+  },
+  "FOOTER": {
+    "SHARE": "Teile diese Webapp mit deinen Freunden. ",
+    "SHARE_2": "Umso mehr Menschen von dieser App wissen, umso mehr Menschen können überprüfen, ob sie im Kontakt mit wem waren und umso mehr Menschen, die positiv getestet wurden können ihre Geodaten hochladen.",
+    "LIKE": "Die gefällt diese Webapp?",
+    "STAR": "Gib uns einen Stern für unser Repo",
+    "DONATE": "Spende",
+    "HERE": "hier",
+    "SUPPORT": "um die Weiterentwicklung von Features zu unterstützen und um die monatlichen Kosten dieser App zu tragen."
+  },
+  "SNACK": {
+    "EXPERIMENTAL_PHASE": "Sorry. Die App ist noch in der experimentalen Phase. Wir unterstützen deine Stadt noch nicht.",
+    "WRONG_FILE_FORMAT": "Deine Datei ist im falschen Format. Versuch es nochmal.",
+    "TOO_OLD_DATE": "Wir akzeptieren keine Daten älter als 14 Tage",
+    "ERROR_UPLOAD": "Sorry. Etwas ist schief gegangen. Probier es nochmal.",
+    "SUCCESS_UPLOAD": "Erfolgreich hochgeladen. Vielen Dank für das Teilen.",
+    "FEATURE_COMING_SOON": "Das Feature ist noch nicht implementiert, aber es kommt bald.",
+    "GET_WELL": "Wir hoffen du wirst schnell wieder gesund !"
+  }
+}

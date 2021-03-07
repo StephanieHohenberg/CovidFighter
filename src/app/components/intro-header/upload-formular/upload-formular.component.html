@@ -1,18 +1,41 @@
+<div class="explaination-container">
+  <p>{{"TESTED_POSITIVE.EXPLAINATION.TITLE" | translate }}</p>
+  <div class="step-container">
+    <div><span class="step-number">&nbsp;#1&nbsp;</span>&nbsp;</div>
+    <p>
+      {{"TESTED_POSITIVE.EXPLAINATION.STEP_1_PRELINK" | translate }} <a href="{{getTodaysGoogleTimelineLink()}}" target="_blank" rel="noopener">{{"TESTED_POSITIVE.EXPLAINATION.STEP_1_TIMELINE" | translate }}</a>
+      &nbsp;<span [innerHtml]="'TESTED_POSITIVE.EXPLAINATION.STEP_1' | translate"></span>
+    </p>
+  </div>
+  <div class="step-container">
+    <div><span class="step-number">&nbsp;#2&nbsp;</span>&nbsp;</div>
+    <p>
+      {{"TESTED_POSITIVE.EXPLAINATION.STEP_2_1" | translate}}
+      &nbsp;(<mat-icon>settings</mat-icon>)&nbsp;
+      {{"TESTED_POSITIVE.EXPLAINATION.STEP_2_2" | translate}}
+    </p>
+  </div>
+  <div class="step-container">
+    <div><span class="step-number">&nbsp;#3&nbsp;</span>&nbsp;</div>
+    <p>{{"TESTED_POSITIVE.EXPLAINATION.STEP_3" | translate}}</p>
+  </div>
+</div>
+
 <div class="form-container">
   <div>
     <mat-form-field appearance="fill">
-      <mat-label>Which test have you done?</mat-label>
+      <mat-label>{{"TESTED_POSITIVE.FORM.SELECT_TEST" | translate}}</mat-label>
       <mat-select [(value)]="selectedTestOption">
-        <mat-option *ngFor="let test of testOptions" [value]="test">{{test}}</mat-option>
+        <mat-option *ngFor="let test of testOptions" [value]="test">{{test | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
     &nbsp;
     <label>
-      <input #fileInput type="file" accept="kml/*" (change)="onSubmitKmlFile(fileInput)" style="display:none">
-      <mat-icon class="grey-circle">upload</mat-icon>
+      <input [disabled]="!hasAgreed" #fileInput type="file" accept="kml/*" (change)="onSubmitKmlFile(fileInput)" style="display:none">
+      <mat-icon class="purple-circle" [ngClass]="{'disabled-circle': !hasAgreed}">upload</mat-icon>
     </label>
   </div>
-
+  <mat-checkbox [(ngModel)]="hasAgreed" [ngClass]="{'red-font': !hasAgreed}"> {{"TESTED_POSITIVE.FORM.CHECKBOX_AGREE" | translate}}</mat-checkbox>
   <div class="date-label-list">
     <span class="date-label" *ngFor="let date of uploadedDates">
       {{date.toLocaleDateString()}} <mat-icon>verified</mat-icon>&nbsp;
@@ -20,3 +43,5 @@
   </div>
   <mat-progress-bar *ngIf="isLoading" [value]="uploadProgress$ | async" mode="determinate"></mat-progress-bar>
 </div>
+
+

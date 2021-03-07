@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-date-stepper',
@@ -14,7 +15,7 @@ export class DateStepperComponent implements OnInit {
   public lastWeek: Date[] = [];
   private today: Date;
 
-  constructor() { }
+  constructor(private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.today = new Date();
@@ -24,7 +25,7 @@ export class DateStepperComponent implements OnInit {
 
   public getLabelForDate(date: Date): string {
     if (date === this.today) {
-      return 'today';
+      return this.translateService.instant('STEPPER.TODAY');
     } else {
       return date.toLocaleDateString();
     }

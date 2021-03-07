@@ -1,40 +1,25 @@
 <mat-expansion-panel #panel [hideToggle]="reply == -1" [disabled]="reply == -1">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <span>You got tested positive?&nbsp;&nbsp;</span>
+      <span>{{"EXPANSION_PANEL.RADIO_BUTTON" | translate}}&nbsp;&nbsp;</span>
     </mat-panel-title>
     <mat-panel-description>
-      <mat-radio-group [(ngModel)]="reply" (change)="selectionChanged(); panel.open()">
-        <mat-radio-button value="1">Yes</mat-radio-button>&nbsp;
-        <mat-radio-button value="0">No</mat-radio-button>
+      <mat-radio-group [(ngModel)]="reply" (change)="selectionChanged(reply); panel.open()">
+        <mat-radio-button value="1">{{"EXPANSION_PANEL.YES" | translate}}</mat-radio-button>&nbsp;
+        <mat-radio-button value="0">{{"EXPANSION_PANEL.NO" | translate}}</mat-radio-button>
       </mat-radio-group>
     </mat-panel-description>
   </mat-expansion-panel-header>
 
   <div class="reply-yes-row" *ngIf="reply == 1">
-    <p>Stop the spread of Corona by sharing your geodata of the last 14 days with others. We hope you get well soon <mat-icon>favorite_border</mat-icon></p>
-    <p>You can create your geodata by using
-      <a href="{{getTodaysGoogleTimelineLink()}}" target="_blank" rel="noopener"> google timeline</a>.
-      After adding all your locations for all the relevant days, go to the settings and export the data for each day into a kml file.
-    </p>
-    <p>
-      Upload the generated files here. Of course we treat your data anonymously and it is going to be deleted after 14 days. <br/>
-      Thank you very much for sharing your data.<br/>
-      &nbsp;
-    </p>
     <app-upload-formular [hasUndefinedGeoDataErrorMessage]="!geolocationActivated"
                          [hasUnsupportedGeoDataErrorMessage]="!supportedGeolocation"
+                         (dataUploaded)="dataUploaded.emit($event)"
     >
     </app-upload-formular>
   </div>
 
   <div class="reply-no-row" *ngIf="reply == 0">
-    <p>Check whether you have been in the wrong place at the wrong time. Stay healthy <mat-icon>favorite_border</mat-icon></p>
-    <p>Make a test, in case you have been in contact with someone tested positive.</p>
-    <p>The next feature for you would be the option to upload your own geodata either locally or to our server. <br/>
-      By uploading it locally you can check the map more easily whether you got any interactions with someone tested positive. <br/>
-      When you upload it to our server, we will do this job for you and notify you. Of course your geodata and your mail address is going to be deleted after 14 days.
-    </p>
     <app-upload-formular-non-tested></app-upload-formular-non-tested>
   </div>
 
